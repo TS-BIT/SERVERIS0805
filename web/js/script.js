@@ -10,10 +10,10 @@ function parodytiZmones() {
 }
 
 function parodytiZmogu() {
-    const row = getZmogus();
+    const item = getZmogus();
     const div = document.getElementById("zmogaus info");
     let str = "<ul>";
-    for (const zmogus of row) {
+    for (const zmogus) {
         str += "<li>" + "vardas:" + " " + zmogus.vardas + "; " + "pavardė:" + " " + zmogus.pavarde + "; " + "gimimo data:" + " " + zmogus.gimimoData + "; " + "alga:" + " " + zmogus.alga + ". " + "</li>"
     }
     str += "</ul>";
@@ -21,10 +21,10 @@ function parodytiZmogu() {
 }
 
 function pridetiZmogu() {
-    const list = addZmogus(zmogus);
+    const newitem = addZmogus(zmogus);
     const div = document.getElementById("ivesti zmogaus info");
     let str = "<ul>";
-    for (const zmogus of list) {
+    for (const zmogus newitem) {
         str += "<li>" + "vardas:" + " " + zmogus.vardas + "; " + "pavardė:" + " " + zmogus.pavarde + "; " + "gimimo data:" + " " + zmogus.gimimoData + "; " + "alga:" + " " + zmogus.alga + ". " + "</li>"
     }
     str += "</ul>";
@@ -32,10 +32,10 @@ function pridetiZmogu() {
 }
 
 function pasalintiZmogu() {
-    const list = deleteZmogus(id);
+    const delitem = deleteZmogus(id);
     const div = document.getElementById("pasalinti zmogaus info");
     let str = "<ul>";
-    for (const zmogus of list) {
+    for (const zmogus delitem) {
         str += "<li>" + "vardas:" + " " + zmogus.vardas + "; " + "pavardė:" + " " + zmogus.pavarde + "; " + "gimimo data:" + " " + zmogus.gimimoData + "; " + "alga:" + " " + zmogus.alga + ". " + "</li>"
     }
     str += "</ul>";
