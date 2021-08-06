@@ -62,19 +62,34 @@ async function main() {
 import * as fs from "fs/promises";
 //const fs = require("fs/promises");
 
-
-let fileNamearray = ["aag.txt", "bag.txt", "cag.txt"];
+console.log("pradzia");
+let fileNamearray = ["aag1.txt", "bag.txt", "cag.txt"];
 let duomenys = "";
 try {
     duomenys += await fs.readFile(fileNamearray[0]);
+} catch (err) {
+    duomenys += ( fileNamearray[0] +" neperskaitytas, ");
+    //console.log(fileNamearray[0] +" neperskaitytas");
+    }  
+try {    
     duomenys += await fs.readFile(fileNamearray[1]);
+} catch (err) {
+    duomenys += ( fileNamearray[1] +" neperskaitytas, ");
+    //console.log(fileNamearray[1] +" neperskaitytas");
+    }
+try {    
     duomenys += await fs.readFile(fileNamearray[2]);
 } catch (err) {
-console.log(fileNamearray[""], err);
-}
+    duomenys += ( fileNamearray[2] +" neperskaitytas.");
+    //console.log(fileNamearray[2] +" neperskaitytas");
+    }
 console.log(duomenys);
 console.log("pabaiga");
 
-
-
+/*
+Ats:
+pradzia
+aag1.txt neperskaitytas, obuolys, kriause, mandarinas, apelsinas, greipfurtas, persimonas, braske, silauoge, zemuoge, agrastas, aviete, serbentas.
+pabaiga
+*/
 
