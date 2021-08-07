@@ -1,3 +1,4 @@
+//po main "type": "module",
 const readline = require("readline");
 const fs = require("fs/promises");
 
@@ -28,46 +29,91 @@ function inputNumber(msg) {
 }
 
 async function main() {
-    // ND
+  
+let vardas = await inputText("Ivesk varda: ");
+console.log(vardas);
+try {
+    let alga = await inputNumber("Ivesk alga: ");
+    console.log(alga);
+    } catch (err) {
+    console.log("blogas skaicius", err);
+    }
 
-    // let vardas = await inputText("Ivesk varda: ");
-    // console.log(vardas);
-
-    // try {
-    //     let alga = await inputNumber("Ivesk alga: ");
-    //     console.log(alga);
-    // } catch (err) {
-    //     console.log("blogas skaicius", err);
-    // }
-
-    // let zmones = [
-    //     {
-    //         vardas: "Jonas",
-    //         pavarde: "Jonaitis",
-    //         alga: 123.48
-    //     },
-    //     {
-    //         vardas: "Petras",
-    //         pavarde: "Petraitis",
-    //         alga: 123.48
-    //     },
-    //     {
-    //         vardas: "Antanas",
-    //         pavarde: "Antanaitis",
-    //         alga: 123.48
-    //     }
-    // ];
-    // try {
-    //     await fs.writeFile("zmones.json", JSON.stringify(zmones), {
-    //         encoding: "utf-8"
-    //     });
-    // } catch (err) {
-    //     console.log("Failed to write to file", err);
-    // }
+    let zmones = [
+        {
+            vardas: "Jonas",
+            pavarde: "Jonaitis",
+            alga: 123.48
+        },
+        {
+            vardas: "Petras",
+            pavarde: "Petraitis",
+            alga: 123.48
+        },
+        {
+            vardas: "Antanas",
+            pavarde: "Antanaitis",
+            alga: 123.48
+        }
+    ];
+    try {
+        await fs.writeFile("zmones.json", JSON.stringify(zmones), {
+            encoding: "utf-8"
+        });
+    } catch (err) {
+        console.log("Failed to write to file", err);
+    }
 
     rl.close();
 }
 main();
+
+<ul>
+  <li> Atspausdinti visus zmones </li>
+  <li> Prideti nauja zmogu </li>
+  <li> Istrinti zmogu </li>
+  <li> Pabaigti </li>
+</ul>
+
+
+
+
+
+/*
+<ul>
+  <li> atspausdinti visus zmones </li>
+  <li> prideti nauja zmogu</li>
+  <li> istrinti zmogu </li>
+  <li> pabaigti </li>
+</ul>
+*/
+
+
+/*
+let s1 = "";
+let s2 = "";
+try {
+s1 += await fs.readFile("failas1.json");
+s2 += await fs.readFile("failas2.json");
+} catch (err) {
+console.log("Klaida skaitant is failo:", err);
+}
+console.log(s1, s2);
+
+try {
+    let m1 = JSON.parse(s1);
+    let m2 = JSON.parse(s2);
+    console.log(m1, m2);
+    let m = m1.concat(m2);
+    console.log(m);
+    m.sort((e1, e2) => e1.length - e2.length);
+    console.log(m);
+} catch (err) {
+    console.log("Tai ne JSON'as");
+}
+   
+console.log("pabaiga");
+*/
 /*
 zmoniu sarasas
 
