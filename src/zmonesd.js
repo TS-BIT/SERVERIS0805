@@ -67,7 +67,7 @@ try {
     rl.close();
 }
 main();
-
+/*
 <ul>
   <li> Atspausdinti visus zmones </li>
   <li> Prideti nauja zmogu </li>
@@ -75,11 +75,6 @@ main();
   <li> Pabaigti </li>
 </ul>
 
-
-
-
-
-/*
 <ul>
   <li> atspausdinti visus zmones </li>
   <li> prideti nauja zmogu</li>
@@ -149,3 +144,95 @@ papraso ivesti skaiciu
 atspausdina visus zmones, kuriu alga didesne uz ivesta skaiciu
 
 */
+
+
+meniu();
+
+async function meniu() {
+    console.log(`MENIU:
+    1. atspausdinti visus žmones
+    2. pridėti naują
+    3. ištrinti žmogų
+    4. daugiausiai uždirbančių (programmerių) sąrašas
+    0. pabaigti
+    `);
+    try {
+        rinkis = await inputNumber("Rinkis iš meniu: ");
+    } catch (err) {
+        console.log('Įvesk skaičių iš meniu!');
+        rinkis = '';
+    }
+    await main();
+    rl.close();
+}
+
+async function main() {
+    if (rinkis === 0) {
+        console.log('Ate! Programa baigė darbą!');
+        rl.close();
+    } else if (rinkis === 1) {
+        let zmoniuArr = [];
+        try {
+            zmoniuArr = JSON.parse(await fs.readFile('zmones.json'));
+            zmoniuArr.length === 0 ? console.log('Sąrašas tuščias. Papildykite!') : undefined;
+            for (let i of zmoniuArr) {
+                console.log(i);
+            }
+        } catch (err) {
+            console.log("Nepavyko nuskaityti failo \'zmones.json\'. Pradžioje įveskite!");
+        }
+        await meniu();
+    } else if (rinkis === 2) {
+        let zmoniuArr = [];
+        try {
+        zmoniuArr = JSON.parse(await fs.readFile('zmones.json'));
+        } catch (err) {
+            // ignored 
+        }
+        let vardas = await inputText("Įvesk varda: ");
+        let pavarde = await inputText("Įvesk pavarde: ");
+        let alga = await inputNumber("Įvesk algą: ");
+        zmoniuArr.push({vardas: vardas, pavarde: pavarde, alga: alga});
+        await writeJSON(zmoniuArr);
+        await meniu();
+    } else if (rinkis === 3) {
+        try {
+            let zmoniuArr = JSON.parse(await fs.readFile('zmones.json'));
+            // laikome, kad vardai yra unikalūs (id), arba bus ištrinti keli vienu metu
+            let sitaIstrinsim = await inputText("Įvesk varda žmogaus, kurį nori ištrinti: ");
+            const istrintasArr = zmoniuArr.filter(el => el.vardas !== sitaIstrinsim);
+            await writeJSON(istrintasArr);
+            console.log("Įvestu vardu žmonių sąraše nebeliko!");
+        } catch (err) {
+            console.log('Nėra ką trinti. Pradžioje įveskite!');
+        }
+        await meniu();
+    } else if (rinkis === 4) {
+        try {
+            const zmoniuArr = JSON.parse(await fs.readFile('zmones.json'));
+            let alga = await inputNumber("Įvesk turtuolio algą: ");
+            const turtuoliai = zmoniuArr.filter(el => el.alga >= alga);
+            turtuoliai.length === 0 ? console.log('Turtuolių nerasta!') : undefined;
+            for(let i of turtuoliai) {
+                console.log(i);
+            }
+        } catch (err) {
+            console.log("Nepavyko nuskaityti failo \'zmones.json\'. Pradžioje įveskite!");
+        }
+        await meniu();
+    } else {
+        await meniu();
+    }
+
+    rl.close();
+}
+
+async function writeJSON(zmones) {
+    try {
+        await fs.writeFile("zmones.json", JSON.stringify(zmones), {
+            encoding: "utf-8"
+        });
+    } catch (err) {
+        console.log("Failed to write to file", err);
+    }
+}
