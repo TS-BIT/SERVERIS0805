@@ -93,3 +93,24 @@ aag1.txt neperskaitytas, obuolys, kriause, mandarinas, apelsinas, greipfurtas, p
 pabaiga
 */
 
+/* 
+async function main() {
+  let failai = ["a.txt", "bu.txt", "b.txt", "c.txt"];
+
+  let atllDaa = "";
+  for (const failas of failai) {
+    try {
+      allData += await fs.readFile(failas);
+    } catch (err) {
+      allData += `\n[${failas} neperskaitytas]\n`;
+    }
+  }
+  console.log(allData);
+}
+main();
+*/
+
+
+// " \r\n " is naujos eilutes + tarpas
+// " \n " tarpas 
+
