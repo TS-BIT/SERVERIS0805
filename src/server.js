@@ -1,8 +1,45 @@
 import { default as express } from "express";
+import { readfile } from "fs/promises";
 const app = express();
 const port = 3000;
 
 app.use(express.static("web"));
+app.use(express.json());
+
+app.use("/zmones", async (req, res) => {
+  res.type("application/json");
+  try {
+    const fZmones = await readFile("zmones.json", { 
+    encoding: "utf8"
+  });
+  res.send(fZmones);
+} catch (err) {
+  res.send("[]");
+}
+
+}
+app.post("/zmones/add", async (req, res) => {
+ const zmogus = req.body;
+  res.type("application/json");
+  try {
+    const fZmones = await readFile("zmones.json", { 
+   encoding: "utf8"
+  });
+  const zmones = JSON
+  res.send(fZmones);
+} catch (err) {
+  res.send("[]");
+}
+app.delete("/zmones/:id"), async (req, res) => {
+  const id = parseInt(req.params.JSON)
+
+}
+
+
+
+
+
+
 
 app.get("/suma", (req, res) => {
   const sk1 = parseFloat(req.query.pirmas);
