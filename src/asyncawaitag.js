@@ -97,7 +97,7 @@ pabaiga
 async function main() {
   let failai = ["a.txt", "bu.txt", "b.txt", "c.txt"];
 
-  let atllDaa = "";
+  let allData = "";
   for (const failas of failai) {
     try {
       allData += await fs.readFile(failas);
