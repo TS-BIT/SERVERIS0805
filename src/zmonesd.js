@@ -66,24 +66,6 @@ try {
 
     rl.close();
 }
-main();
-/*
-<ul>
-  <li> Atspausdinti visus zmones </li>
-  <li> Prideti nauja zmogu </li>
-  <li> Istrinti zmogu </li>
-  <li> Pabaigti </li>
-</ul>
-
-<ul>
-  <li> atspausdinti visus zmones </li>
-  <li> prideti nauja zmogu</li>
-  <li> istrinti zmogu </li>
-  <li> pabaigti </li>
-</ul>
-*/
-
-
 /*
 let s1 = "";
 let s2 = "";
@@ -145,9 +127,6 @@ atspausdina visus zmones, kuriu alga didesne uz ivesta skaiciu
 
 */
 
-
-meniu();
-
 async function meniu() {
     console.log(`MENIU:
     1. atspausdinti visus žmones
@@ -163,13 +142,13 @@ async function meniu() {
         rinkis = '';
     }
     await main();
-    rl.close();
+    //rl.close();
 }
 
 async function main() {
     if (rinkis === 0) {
         console.log('Ate! Programa baigė darbą!');
-        rl.close();
+        //rl.close();
     } else if (rinkis === 1) {
         let zmoniuArr = [];
         try {
@@ -220,11 +199,13 @@ async function main() {
             console.log("Nepavyko nuskaityti failo \'zmones.json\'. Pradžioje įveskite!");
         }
         await meniu();
-    } else {
+    } 
+    /*
+    else {
         await meniu();
     }
-
-    rl.close();
+*/
+    //rl.close();
 }
 
 async function writeJSON(zmones) {
